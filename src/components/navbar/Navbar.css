@@ -1,0 +1,12 @@
+.navbar {
+    color: var(--color-branding);
+    background: var(--color-foreground);
+    box-shadow: var(--box-shadow);
+    height: 64px;
+    padding: 0 var(--spacing-5);
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: var(--spacing-2);
+    align-content: center;
+}
