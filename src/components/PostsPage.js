@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-  import {storeData} from '../redux/data'
+import {setPosts} from '../redux/reddit';
+import { selectFilteredPosts } from '../redux/reddit';
 import RedditItem  from './RedditItem';
-import PropTypes from 'prop-types';
 
 const URL = 'https://pokeapi.co/api/v2/pokemon';
 
@@ -18,11 +18,9 @@ const fetchData = async (url) => {
     }
 }
 
-export const SubredditPage = () => {
+export const PostsPage = () => {
     const [loading, setLoading] = useState(false);
-    const data = useSelector((state) => {
-        return state.data.value
-    });
+    const data = useSelector(selectFilteredPosts);
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -32,32 +30,32 @@ export const SubredditPage = () => {
             const result = await fetchData(URL);
             setLoading(false);
             // dispatch to the redux store the action with the response object
-            dispatch(storeData(result))
+            dispatch(setPosts(result))
           }
           storeFetchedData();
-      }, [dispatch]);
+    }, [dispatch]);
 
     if (loading) return <h1>Loading...</h1>
     if (data?.error) return <h1>Something went wrong!</h1>
     return (
-        <main className='App'>
-                { data.results ? (
-                    <div>
-                    <h1>Items</h1>
-                    <div>
-                        {data?.results.map((item) => {
-                            return <RedditItem key={item.name} {...item} />
-                            }
-                        )}
-                    </div>
+        <div>
+            { data ? (
+                <div>
+                <h1>Items</h1>
+                <div>
+                    {data?.map((item) => {
+                        return <RedditItem key={item.name} {...item} />
+                        }
+                    )}
                 </div>
-                ) : (
-                    <div>
-                    <h1>No items</h1>
-                    </div>
-                )}
-        </main>
+            </div>
+            ) : (
+                <div>
+                <h1>No items</h1>
+                </div>
+            )}
+        </div>
     )
 }
 
-export default SubredditPage
+export default PostsPage

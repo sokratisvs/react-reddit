@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import dataReducer from './data';
+import redditReducer from './reddit';
 
 export const store = configureStore({
     reducer: {
-        data: dataReducer, //use this data reducer function to handle all updates to that state.
+        reddit: redditReducer, //use this data reducer function to handle all updates to that state.
     }
 });
