@@ -26,3 +26,10 @@
     color: var(--color-text-secondary);
     font-size: 1.5rem;
 }
+
+@media screen and (max-width: 500px) {
+    .search input {
+        padding: var(--spacing-1) var(--spacing-1);
+        width: 50%;
+    }
+}

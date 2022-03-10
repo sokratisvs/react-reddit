@@ -10,3 +10,12 @@
     grid-gap: var(--spacing-2);
     align-content: center;
 }
+
+@media screen and (max-width: 500px) {
+    .navbar {
+        padding: 0 var(--spacing-1);
+        grid-template-columns: 1fr;
+        grid-column: 1;
+        padding: 1rem;
+    }
+}
