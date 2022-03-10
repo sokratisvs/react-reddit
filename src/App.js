@@ -1,15 +1,8 @@
 import './App.css';
-import SubredditPage from './components/SubredditsPage';
+import Main from './components/main/Main';
 
 function App() {
-  return (
-    <div className="app">
-      <header className="header">
-        Header
-      </header>
-      <SubredditPage />
-    </div>
-  );
+  return <Main/>;
 }
 
 export default App;
